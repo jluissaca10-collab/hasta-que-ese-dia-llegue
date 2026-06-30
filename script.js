@@ -1,178 +1,208 @@
-const inicio=new Date("2026-06-30");
+/* =========================================================
+   CONFIGURACIÓN — CAMBIA AQUÍ LAS CONTRASEÑAS
+   ========================================================= */
 
-const cartas=[
+// Fecha objetivo (Día 0) — 11 de julio 2026
+const FECHA_DIA_CERO = new Date(2026, 6, 11, 0, 0, 0); // mes 6 = julio
 
-{
-nombre:"Introducción",
-fecha:0,
-password:"intro",
-imagen:"cartas/introduccion.jpg"
-},
+// Definición de los 12 días.
+// type: "intro" | "image" | "video"
+// files: archivos en la RAÍZ del repositorio
+// pass: contraseña de cada sobre (CÁMBIALAS)
+const DIAS = [
+  { id:0,  fecha:"2026-06-30", etiqueta:"Introducción", fechaTexto:"30 jun", type:"intro",
+    files:["introduccion1.jpg.PNG","introduccion2.jpg.PNG","introduccion3.jpg.PNG"], pass:"intro" },
 
-{
-nombre:"Día -10",
-fecha:1,
-password:"dia10",
-imagen:"cartas/dia10.jpg"
-},
-
-{
-nombre:"Día -9",
-fecha:2,
-password:"dia9",
-imagen:"cartas/dia9.jpg"
-},
-
-{
-nombre:"Día -8",
-fecha:3,
-password:"dia8",
-imagen:"cartas/dia8.jpg"
-},
-
-{
-nombre:"Día -7",
-fecha:4,
-password:"dia7",
-imagen:"cartas/dia7.jpg"
-},
-
-{
-nombre:"Día -6",
-fecha:5,
-password:"dia6",
-imagen:"cartas/dia6.jpg"
-},
-
-{
-nombre:"Día -5",
-fecha:6,
-password:"dia5",
-imagen:"cartas/dia5.jpg"
-},
-
-{
-nombre:"Día -4",
-fecha:7,
-password:"dia4",
-imagen:"cartas/dia4.jpg"
-},
-
-{
-nombre:"Día -3",
-fecha:8,
-password:"dia3",
-imagen:"cartas/dia3.jpg"
-},
-
-{
-nombre:"Día -2",
-fecha:9,
-password:"dia2",
-imagen:"cartas/dia2.jpg"
-},
-
-{
-nombre:"Día -1",
-fecha:10,
-password:"dia1",
-imagen:"cartas/dia1.jpg"
-},
-
-{
-nombre:"Día 0",
-fecha:11,
-password:"final",
-video:"cartas/final.mp4"
-}
-
+  { id:1,  fecha:"2026-07-01", etiqueta:"Día -10", fechaTexto:"1 jul",  type:"image", files:["dia10.jpg.PNG"], pass:"2023" },
+  { id:2,  fecha:"2026-07-02", etiqueta:"Día -9",  fechaTexto:"2 jul",  type:"image", files:["dia9.jpg.PNG"],  pass:"Medellin"  },
+  { id:3,  fecha:"2026-07-03", etiqueta:"Día -8",  fechaTexto:"3 jul",  type:"image", files:["dia8.jpg.PNG"],  pass:"Blanco"  },
+  { id:4,  fecha:"2026-07-04", etiqueta:"Día -7",  fechaTexto:"4 jul",  type:"image", files:["dia7img.jpg.PNG"], pass:"Pintando" },
+  { id:5,  fecha:"2026-07-05", etiqueta:"Día -6",  fechaTexto:"5 jul",  type:"image", files:["dia6.jpg.PNG"],  pass:"Calentado"  },
+  { id:6,  fecha:"2026-07-06", etiqueta:"Día -5",  fechaTexto:"6 jul",  type:"image", files:["dia5.jpg.PNG"],  pass:"Sammy Juice Chick"  },
+  { id:7,  fecha:"2026-07-07", etiqueta:"Día -4",  fechaTexto:"7 jul",  type:"video", files:["dia7.mp4"],      pass:"Broncoffee"  },
+  { id:8,  fecha:"2026-07-08", etiqueta:"Día -3",  fechaTexto:"8 jul",  type:"image", files:["dia3.jpg.PNG"],  pass:"02/05/2026"  },
+  { id:9,  fecha:"2026-07-09", etiqueta:"Día -2",  fechaTexto:"9 jul",  type:"image", files:["dia2.jpg.PNG"],  pass:"Real Madrid"  },
+  { id:10, fecha:"2026-07-10", etiqueta:"Día -1",  fechaTexto:"10 jul", type:"image", files:["dia1.jpg.PNG"],  pass:"The devil wears prada 2"  },
+  { id:11, fecha:"2026-07-11", etiqueta:"Día 0",   fechaTexto:"11 jul", type:"image", files:["dia0.jpg.PNG"],  pass:"Rehobot"  },
 ];
 
-const sobres=document.getElementById("sobres");
+/* =========================================================
+   IMPORTANTE SOBRE EL DÍA 7 (4 julio)
+   El día 7 de tu calendario (4 jul) es una IMAGEN, pero
+   tu archivo de video "dia7.mp4" corresponde al 7 de julio.
+   Tu lista de imágenes NO incluye una imagen para el 4 jul:
+   tienes dia10,9,8,6,5,4,3,2,1,0 (falta "dia7" como imagen).
+   Por eso el 4 jul apunta a "dia7img.jpg.PNG".
+   👉 Si ese día también debe ser el video, cambia la línea id:4
+      a:  type:"video", files:["dia7.mp4"]
+   👉 Si tienes otra imagen para el 4 jul, pon su nombre real.
+   ========================================================= */
 
-const hoy=new Date();
+/* =========================================================
+   LÓGICA
+   ========================================================= */
+const $ = (s)=>document.querySelector(s);
 
-const dias=Math.floor((hoy-inicio)/86400000);
+function hoyISO(){
+  const n = new Date();
+  return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
+}
+// Un sobre está disponible si su fecha es HOY o anterior (ya pasó / es el día).
+function estaDisponible(dia){
+  const hoy = hoyISO();
+  return dia.fecha <= hoy;
+}
 
-document.getElementById("contador").innerHTML=
-dias<11?
-"Faltan "+(11-dias)+" días ❤️":
-"Hoy es ese día ❤️";
-
-cartas.forEach((c,i)=>{
-
-let div=document.createElement("div");
-
-div.className="sobre";
-
-div.innerHTML="💌 "+c.nombre;
-
-div.onclick=()=>seleccionar(i);
-
-sobres.appendChild(div);
-
+/* ---- Pantalla de bienvenida ---- */
+$("#enterBtn").addEventListener("click", ()=>{
+  $("#welcome").classList.remove("active");
+  $("#main").classList.add("active");
+  renderEnvelopes();
 });
 
-let actual;
+/* ---- Contador ---- */
+function tick(){
+  const ahora = new Date();
+  let diff = FECHA_DIA_CERO - ahora;
+  const lbl = $("#countdown-label");
+  if(diff <= 0){
+    $("#cd-days").textContent="00";$("#cd-hours").textContent="00";
+    $("#cd-mins").textContent="00";$("#cd-secs").textContent="00";
+    lbl.textContent = "Ese día por fin llegó ❤";
+    return;
+  }
+  const d=Math.floor(diff/86400000); diff-=d*86400000;
+  const h=Math.floor(diff/3600000);  diff-=h*3600000;
+  const m=Math.floor(diff/60000);    diff-=m*60000;
+  const s=Math.floor(diff/1000);
+  $("#cd-days").textContent=String(d).padStart(2,"0");
+  $("#cd-hours").textContent=String(h).padStart(2,"0");
+  $("#cd-mins").textContent=String(m).padStart(2,"0");
+  $("#cd-secs").textContent=String(s).padStart(2,"0");
+  lbl.textContent="Faltan para el día 0";
+}
+setInterval(tick,1000); tick();
 
-function seleccionar(i){
-
-actual=i;
-
-document.getElementById("password").value="";
-
-document.getElementById("mensaje").innerHTML="";
-
-document.getElementById("imagenCarta").style.display="none";
-
-document.getElementById("videoCarta").style.display="none";
-
-document.getElementById("tituloCarta").innerHTML=cartas[i].nombre;
-
-if(dias<cartas[i].fecha){
-
-document.getElementById("mensaje").innerHTML="Todavía no... vuelve mañana ❤️";
-
-}else{
-
-document.getElementById("mensaje").innerHTML="";
-
+/* ---- Render de sobres ---- */
+function renderEnvelopes(){
+  const cont = $("#envelopes");
+  cont.innerHTML="";
+  DIAS.forEach((dia,i)=>{
+    const disp = estaDisponible(dia);
+    const el = document.createElement("div");
+    el.className = "envelope " + (disp ? "available" : "locked");
+    el.style.animationDelay = (i*0.05)+"s";
+    el.innerHTML = `
+      <div class="flap"></div>
+      <div class="seal">❤</div>
+      <div class="day-label">${dia.etiqueta}</div>
+      <div class="day-date">${dia.fechaTexto}</div>
+    `;
+    if(disp){
+      el.addEventListener("click", ()=>abrirPass(dia));
+    }else{
+      el.addEventListener("click", ()=>{
+        el.animate(
+          [{transform:"translateX(0)"},{transform:"translateX(-5px)"},
+           {transform:"translateX(5px)"},{transform:"translateX(0)"}],
+          {duration:300}
+        );
+      });
+    }
+    cont.appendChild(el);
+  });
 }
 
-document.getElementById("modal").style.display="block";
+/* ---- Modal de contraseña ---- */
+let diaActual = null;
 
+function abrirPass(dia){
+  diaActual = dia;
+  $("#passTitle").textContent = dia.etiqueta;
+  $("#passInput").value="";
+  $("#passError").textContent="";
+  abrirModal("passModal");
+  setTimeout(()=>$("#passInput").focus(),200);
 }
 
-function abrirCarta(){
+$("#passSubmit").addEventListener("click", validarPass);
+$("#passInput").addEventListener("keydown",(e)=>{ if(e.key==="Enter") validarPass(); });
 
-if(dias<cartas[actual].fecha)return;
-
-if(document.getElementById("password").value!=cartas[actual].password){
-
-alert("Contraseña incorrecta");
-
-return;
-
+function validarPass(){
+  if(!diaActual) return;
+  const val = $("#passInput").value.trim();
+  if(val === diaActual.pass){
+    cerrarModal("passModal");
+    mostrarContenido(diaActual);
+  }else{
+    $("#passError").textContent = "Contraseña incorrecta. Inténtalo de nuevo.";
+    $("#passInput").focus();
+  }
 }
 
-if(cartas[actual].imagen){
+/* ---- Modal de contenido ---- */
+let introIndex = 0;
 
-let img=document.getElementById("imagenCarta");
+function mostrarContenido(dia){
+  const body = $("#contentBody");
+  const controls = $("#introControls");
+  body.innerHTML="";
+  controls.classList.remove("show");
 
-img.src=cartas[actual].imagen;
+  if(dia.type === "video"){
+    const v = document.createElement("video");
+    v.src = dia.files[0];
+    v.controls = true;
+    v.autoplay = true;
+    v.playsInline = true;
+    body.appendChild(v);
 
-img.style.display="block";
+  }else if(dia.type === "intro"){
+    introIndex = 0;
+    controls.classList.add("show");
+    renderIntro(dia);
 
+  }else{ // image
+    const img = document.createElement("img");
+    img.src = dia.files[0];
+    img.alt = dia.etiqueta;
+    body.appendChild(img);
+  }
+
+  abrirModal("contentModal");
 }
 
-if(cartas[actual].video){
-
-let v=document.getElementById("videoCarta");
-
-v.src=cartas[actual].video;
-
-v.style.display="block";
-
+function renderIntro(dia){
+  const body = $("#contentBody");
+  body.innerHTML="";
+  const img = document.createElement("img");
+  img.src = dia.files[introIndex];
+  img.alt = "Introducción "+(introIndex+1);
+  body.appendChild(img);
+  $("#introCounter").textContent = `${introIndex+1} / ${dia.files.length}`;
+  $("#introNext").textContent = (introIndex === dia.files.length-1) ? "Volver al menú" : "Siguiente";
 }
 
+$("#introNext").addEventListener("click", ()=>{
+  if(!diaActual || diaActual.type!=="intro") return;
+  if(introIndex < diaActual.files.length-1){
+    introIndex++;
+    renderIntro(diaActual);
+  }else{
+    cerrarModal("contentModal"); // termina la 3ª imagen → vuelve al menú
+  }
+});
+
+/* ---- Utilidades de modal ---- */
+function abrirModal(id){ document.getElementById(id).classList.add("open"); }
+function cerrarModal(id){
+  const m = document.getElementById(id);
+  m.classList.remove("open");
+  if(id==="contentModal") $("#contentBody").innerHTML=""; // detiene video
 }
+document.querySelectorAll("[data-close]").forEach(btn=>{
+  btn.addEventListener("click", ()=>cerrarModal(btn.dataset.close));
+});
+document.querySelectorAll(".modal").forEach(m=>{
+  m.addEventListener("click",(e)=>{ if(e.target===m) cerrarModal(m.id); });
+});
