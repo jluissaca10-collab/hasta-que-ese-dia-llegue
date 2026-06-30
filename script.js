@@ -11,7 +11,7 @@ const DIAS = [
   { id:1,  fecha:"2026-06-29", etiqueta:"Día -10", fechaTexto:"1 jul",  type:"image", files:["dia10.jpg.PNG"], pass:"2023" },
   { id:2,  fecha:"2026-06-29", etiqueta:"Día -9",  fechaTexto:"2 jul",  type:"image", files:["dia9.jpg.PNG"],  pass:"Medellin" },
   { id:3,  fecha:"2026-06-29", etiqueta:"Día -8",  fechaTexto:"3 jul",  type:"image", files:["dia8.jpg.PNG"],  pass:"Blanco" },
-  { id:4,  fecha:"2026-06-29", etiqueta:"Día -7",  fechaTexto:"4 jul",  type:"video", files:["dia7.mp4"],      pass:"Pintando" },
+  { id:4,  fecha:"2026-06-29", etiqueta:"Día -7",  fechaTexto:"4 jul",  type:"video", files:["dia7.MP4"],      pass:"Pintando" },
   { id:5,  fecha:"2026-06-29", etiqueta:"Día -6",  fechaTexto:"5 jul",  type:"image", files:["dia6.jpg.PNG"],  pass:"Calentado" },
   { id:6,  fecha:"2026-06-29", etiqueta:"Día -5",  fechaTexto:"6 jul",  type:"image", files:["dia5.jpg.PNG"],  pass:"Sammy Juice Chick" },
   { id:7,  fecha:"2026-06-29", etiqueta:"Día -4",  fechaTexto:"7 jul",  type:"video", files:["dia7.mp4"],      pass:"Broncoffee" },
