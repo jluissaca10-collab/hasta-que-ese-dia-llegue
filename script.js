@@ -1,42 +1,25 @@
 /* =========================================================
-   CONFIGURACIÓN — CAMBIA AQUÍ LAS CONTRASEÑAS
+   CONFIGURACIÓN — CONTRASEÑAS REALES
    ========================================================= */
 
-// Fecha objetivo (Día 0) — 11 de julio 2026
 const FECHA_DIA_CERO = new Date(2026, 6, 11, 0, 0, 0); // mes 6 = julio
 
-// Definición de los 12 días.
-// type: "intro" | "image" | "video"
-// files: archivos en la RAÍZ del repositorio
-// pass: contraseña de cada sobre (CÁMBIALAS)
 const DIAS = [
-  { id:0,  fecha:"2026-06-30", etiqueta:"Introducción", fechaTexto:"30 jun", type:"intro",
-    files:["introduccion1.jpg.PNG","introduccion2.jpg.PNG","introduccion3.jpg.PNG"], pass:"intro" },
+  { id:0,  fecha:"2026-06-30", etiqueta:"Introducción", fechaTexto:"30 jun", type:"intro", noPass:true,
+    files:["introduccion1.jpg.PNG","introduccion2.jpg.PNG","introduccion3.jpg.PNG"] },
 
   { id:1,  fecha:"2026-07-01", etiqueta:"Día -10", fechaTexto:"1 jul",  type:"image", files:["dia10.jpg.PNG"], pass:"2023" },
-  { id:2,  fecha:"2026-07-02", etiqueta:"Día -9",  fechaTexto:"2 jul",  type:"image", files:["dia9.jpg.PNG"],  pass:"Medellin"  },
-  { id:3,  fecha:"2026-07-03", etiqueta:"Día -8",  fechaTexto:"3 jul",  type:"image", files:["dia8.jpg.PNG"],  pass:"Blanco"  },
-  { id:4,  fecha:"2026-07-04", etiqueta:"Día -7",  fechaTexto:"4 jul",  type:"image", files:["dia7img.jpg.PNG"], pass:"Pintando" },
-  { id:5,  fecha:"2026-07-05", etiqueta:"Día -6",  fechaTexto:"5 jul",  type:"image", files:["dia6.jpg.PNG"],  pass:"Calentado"  },
-  { id:6,  fecha:"2026-07-06", etiqueta:"Día -5",  fechaTexto:"6 jul",  type:"image", files:["dia5.jpg.PNG"],  pass:"Sammy Juice Chick"  },
-  { id:7,  fecha:"2026-07-07", etiqueta:"Día -4",  fechaTexto:"7 jul",  type:"video", files:["dia7.mp4"],      pass:"Broncoffee"  },
-  { id:8,  fecha:"2026-07-08", etiqueta:"Día -3",  fechaTexto:"8 jul",  type:"image", files:["dia3.jpg.PNG"],  pass:"02/05/2026"  },
-  { id:9,  fecha:"2026-07-09", etiqueta:"Día -2",  fechaTexto:"9 jul",  type:"image", files:["dia2.jpg.PNG"],  pass:"Real Madrid"  },
-  { id:10, fecha:"2026-07-10", etiqueta:"Día -1",  fechaTexto:"10 jul", type:"image", files:["dia1.jpg.PNG"],  pass:"The devil wears prada 2"  },
-  { id:11, fecha:"2026-07-11", etiqueta:"Día 0",   fechaTexto:"11 jul", type:"image", files:["dia0.jpg.PNG"],  pass:"Rehobot"  },
+  { id:2,  fecha:"2026-07-02", etiqueta:"Día -9",  fechaTexto:"2 jul",  type:"image", files:["dia9.jpg.PNG"],  pass:"Medellin" },
+  { id:3,  fecha:"2026-07-03", etiqueta:"Día -8",  fechaTexto:"3 jul",  type:"image", files:["dia8.jpg.PNG"],  pass:"Blanco" },
+  { id:4,  fecha:"2026-07-04", etiqueta:"Día -7",  fechaTexto:"4 jul",  type:"video", files:["dia7.mp4"],      pass:"Pintando" },
+  { id:5,  fecha:"2026-07-05", etiqueta:"Día -6",  fechaTexto:"5 jul",  type:"image", files:["dia6.jpg.PNG"],  pass:"Calentado" },
+  { id:6,  fecha:"2026-07-06", etiqueta:"Día -5",  fechaTexto:"6 jul",  type:"image", files:["dia5.jpg.PNG"],  pass:"Sammy Juice Chick" },
+  { id:7,  fecha:"2026-07-07", etiqueta:"Día -4",  fechaTexto:"7 jul",  type:"video", files:["dia7.mp4"],      pass:"Broncoffee" },
+  { id:8,  fecha:"2026-07-08", etiqueta:"Día -3",  fechaTexto:"8 jul",  type:"image", files:["dia3.jpg.PNG"],  pass:"02/05/2026" },
+  { id:9,  fecha:"2026-07-09", etiqueta:"Día -2",  fechaTexto:"9 jul",  type:"image", files:["dia2.jpg.PNG"],  pass:"Real Madrid" },
+  { id:10, fecha:"2026-07-10", etiqueta:"Día -1",  fechaTexto:"10 jul", type:"image", files:["dia1.jpg.PNG"],  pass:"The devil wears prada 2" },
+  { id:11, fecha:"2026-07-11", etiqueta:"Día 0",   fechaTexto:"11 jul", type:"image", files:["dia0.jpg.PNG"],  pass:"Rehobot" },
 ];
-
-/* =========================================================
-   IMPORTANTE SOBRE EL DÍA 7 (4 julio)
-   El día 7 de tu calendario (4 jul) es una IMAGEN, pero
-   tu archivo de video "dia7.mp4" corresponde al 7 de julio.
-   Tu lista de imágenes NO incluye una imagen para el 4 jul:
-   tienes dia10,9,8,6,5,4,3,2,1,0 (falta "dia7" como imagen).
-   Por eso el 4 jul apunta a "dia7img.jpg.PNG".
-   👉 Si ese día también debe ser el video, cambia la línea id:4
-      a:  type:"video", files:["dia7.mp4"]
-   👉 Si tienes otra imagen para el 4 jul, pon su nombre real.
-   ========================================================= */
 
 /* =========================================================
    LÓGICA
@@ -47,10 +30,8 @@ function hoyISO(){
   const n = new Date();
   return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,"0")}-${String(n.getDate()).padStart(2,"0")}`;
 }
-// Un sobre está disponible si su fecha es HOY o anterior (ya pasó / es el día).
 function estaDisponible(dia){
-  const hoy = hoyISO();
-  return dia.fecha <= hoy;
+  return dia.fecha <= hoyISO();
 }
 
 /* ---- Pantalla de bienvenida ---- */
@@ -99,7 +80,7 @@ function renderEnvelopes(){
       <div class="day-date">${dia.fechaTexto}</div>
     `;
     if(disp){
-      el.addEventListener("click", ()=>abrirPass(dia));
+      el.addEventListener("click", ()=>abrirSobre(dia));
     }else{
       el.addEventListener("click", ()=>{
         el.animate(
@@ -113,11 +94,20 @@ function renderEnvelopes(){
   });
 }
 
-/* ---- Modal de contraseña ---- */
+/* ---- Abrir sobre ---- */
 let diaActual = null;
 
-function abrirPass(dia){
+function abrirSobre(dia){
   diaActual = dia;
+  if(dia.noPass){
+    mostrarContenido(dia);
+  }else{
+    abrirPass(dia);
+  }
+}
+
+/* ---- Modal de contraseña ---- */
+function abrirPass(dia){
   $("#passTitle").textContent = dia.etiqueta;
   $("#passInput").value="";
   $("#passError").textContent="";
@@ -162,7 +152,7 @@ function mostrarContenido(dia){
     controls.classList.add("show");
     renderIntro(dia);
 
-  }else{ // image
+  }else{
     const img = document.createElement("img");
     img.src = dia.files[0];
     img.alt = dia.etiqueta;
@@ -189,7 +179,7 @@ $("#introNext").addEventListener("click", ()=>{
     introIndex++;
     renderIntro(diaActual);
   }else{
-    cerrarModal("contentModal"); // termina la 3ª imagen → vuelve al menú
+    cerrarModal("contentModal");
   }
 });
 
@@ -198,7 +188,7 @@ function abrirModal(id){ document.getElementById(id).classList.add("open"); }
 function cerrarModal(id){
   const m = document.getElementById(id);
   m.classList.remove("open");
-  if(id==="contentModal") $("#contentBody").innerHTML=""; // detiene video
+  if(id==="contentModal") $("#contentBody").innerHTML="";
 }
 document.querySelectorAll("[data-close]").forEach(btn=>{
   btn.addEventListener("click", ()=>cerrarModal(btn.dataset.close));
