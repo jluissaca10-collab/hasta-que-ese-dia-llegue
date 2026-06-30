@@ -5,20 +5,20 @@
 const FECHA_DIA_CERO = new Date(2026, 6, 11, 0, 0, 0); // mes 6 = julio
 
 const DIAS = [
-  { id:0,  fecha:"2026-06-29", etiqueta:"Introducción", fechaTexto:"30 jun", type:"intro", noPass:true,
+  { id:0,  fecha:"2026-06-30", etiqueta:"Introducción", fechaTexto:"30 jun", type:"intro", noPass:true,
     files:["introduccion1.jpg.PNG","introduccion2.jpg.PNG","introduccion3.jpg.PNG"] },
 
-  { id:1,  fecha:"2026-06-29", etiqueta:"Día -10", fechaTexto:"1 jul",  type:"image", files:["dia10.jpg.PNG"], pass:"2023" },
-  { id:2,  fecha:"2026-06-29", etiqueta:"Día -9",  fechaTexto:"2 jul",  type:"image", files:["dia9.jpg.PNG"],  pass:"Medellin" },
-  { id:3,  fecha:"2026-06-29", etiqueta:"Día -8",  fechaTexto:"3 jul",  type:"image", files:["dia8.jpg.PNG"],  pass:"Blanco" },
-  { id:4,  fecha:"2026-06-29", etiqueta:"Día -7",  fechaTexto:"4 jul",  type:"video", files:["dia7.MP4"],      pass:"Pintando" },
-  { id:5,  fecha:"2026-06-29", etiqueta:"Día -6",  fechaTexto:"5 jul",  type:"image", files:["dia6.jpg.PNG"],  pass:"Calentado" },
-  { id:6,  fecha:"2026-06-29", etiqueta:"Día -5",  fechaTexto:"6 jul",  type:"image", files:["dia5.jpg.PNG"],  pass:"Sammyjuicechick" },
-  { id:7,  fecha:"2026-06-29", etiqueta:"Día -4",  fechaTexto:"7 jul",  type:"image", files:["dia4.jpg.PNG"],  pass:"Broncoffee" },
-  { id:8,  fecha:"2026-06-29", etiqueta:"Día -3",  fechaTexto:"8 jul",  type:"image", files:["dia3.jpg.PNG"],  pass:"02/05/2026" },
-  { id:9,  fecha:"2026-06-29", etiqueta:"Día -2",  fechaTexto:"9 jul",  type:"image", files:["dia2.jpg.PNG"],  pass:"RealMadrid" },
-  { id:10, fecha:"2026-06-29", etiqueta:"Día -1",  fechaTexto:"10 jul", type:"image", files:["dia1.jpg.PNG"],  pass:"Thedevilwearsprada2" },
-  { id:11, fecha:"2026-06-29", etiqueta:"Día 0",   fechaTexto:"11 jul", type:"image", files:["dia0.jpg.PNG"],  pass:"Rehobot" },
+  { id:1,  fecha:"2026-07-01", etiqueta:"Día -10", fechaTexto:"1 jul",  type:"image", files:["dia10.jpg.PNG"], pass:"2023" },
+  { id:2,  fecha:"2026-07-02", etiqueta:"Día -9",  fechaTexto:"2 jul",  type:"image", files:["dia9.jpg.PNG"],  pass:"Medellin" },
+  { id:3,  fecha:"2026-07-03", etiqueta:"Día -8",  fechaTexto:"3 jul",  type:"image", files:["dia8.jpg.PNG"],  pass:"Blanco" },
+  { id:4,  fecha:"2026-07-04", etiqueta:"Día -7",  fechaTexto:"4 jul",  type:"video", files:["dia7.MP4"],      pass:"Pintando" },
+  { id:5,  fecha:"2026-07-05", etiqueta:"Día -6",  fechaTexto:"5 jul",  type:"image", files:["dia6.jpg.PNG"],  pass:"Calentado" },
+  { id:6,  fecha:"2026-07-06", etiqueta:"Día -5",  fechaTexto:"6 jul",  type:"image", files:["dia5.jpg.PNG"],  pass:"Sammyjuicechick" },
+  { id:7,  fecha:"2026-07-07", etiqueta:"Día -4",  fechaTexto:"7 jul",  type:"image", files:["dia4.jpg.PNG"],  pass:"Broncoffee" },
+  { id:8,  fecha:"2026-07-08", etiqueta:"Día -3",  fechaTexto:"8 jul",  type:"image", files:["dia3.jpg.PNG"],  pass:"02/05/2026" },
+  { id:9,  fecha:"2026-07-09", etiqueta:"Día -2",  fechaTexto:"9 jul",  type:"image", files:["dia2.jpg.PNG"],  pass:"RealMadrid" },
+  { id:10, fecha:"2026-07-10", etiqueta:"Día -1",  fechaTexto:"10 jul", type:"image", files:["dia1.jpg.PNG"],  pass:"Thedevilwearsprada2" },
+  { id:11, fecha:"2026-07-11", etiqueta:"Día 0",   fechaTexto:"11 jul", type:"image", files:["dia0.jpg.PNG"],  pass:"Rehobot" },
 ];
 
 /* =========================================================
