@@ -206,7 +206,7 @@ body{
 .modal-close{
   position:absolute;top:12px;right:16px;
   background:none;border:none;font-size:1.7rem;line-height:1;
-  color:var(--tinta-suave);cursor:pointer;
+  color:var(--tinta-suave);cursor:pointer;z-index:5;
 }
 .modal-icon{display:block;font-size:1.4rem;color:var(--oro);margin-bottom:10px;}
 .modal-card h3{
@@ -224,15 +224,15 @@ body{
 .pass-input:focus{border-color:var(--oro);}
 .pass-error{color:#b5564f;font-size:.85rem;min-height:20px;margin-bottom:8px;}
 
-/* CONTENT MODAL */
-.content-card{max-width:560px;padding:24px;}
+/* CONTENT MODAL — FOTO GRANDE Y COMPLETA */
+.content-card{max-width:92vw;width:92vw;padding:16px;}
 .content-body{
   width:100%;border-radius:18px;overflow:hidden;margin-bottom:16px;
-  background:#000;
+  background:transparent;
 }
 .content-body img,.content-body video{
-  width:100%;height:auto;display:block;max-height:72vh;object-fit:contain;
-  background:#000;
+  width:100%;height:auto;display:block;max-height:80vh;object-fit:contain;
+  border-radius:14px;
 }
 .content-body img{animation:fadeIn .5s ease both;}
 
