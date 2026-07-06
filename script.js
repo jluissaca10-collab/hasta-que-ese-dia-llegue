@@ -13,7 +13,7 @@ const DIAS = [
   { id:3,  fecha:"2026-07-03", etiqueta:"Día -8",  fechaTexto:"3 jul",  type:"image", files:["dia8.jpg.PNG"],  pass:"Blanco" },
   { id:4,  fecha:"2026-07-04", etiqueta:"Día -7",  fechaTexto:"4 jul",  type:"video", files:["dia7.MP4"],      pass:"Pintando" },
   { id:5,  fecha:"2026-07-05", etiqueta:"Día -6",  fechaTexto:"5 jul",  type:"image", files:["dia6.jpg.PNG"],  pass:"Calentado" },
-  { id:6,  fecha:"2026-07-06", etiqueta:"Día -5",  fechaTexto:"6 jul",  type:"image", files:["dia5.jpg.PNG"],  pass:"Sammyjuicechick" },
+  { id:6,  fecha:"2026-07-06", etiqueta:"Día -5",  fechaTexto:"6 jul",  type:"image", files:["dia5.jpg.PNG"],  pass:"Sammyjuicychick" },
   { id:7,  fecha:"2026-07-07", etiqueta:"Día -4",  fechaTexto:"7 jul",  type:"image", files:["dia4.jpg.PNG"],  pass:"Broncoffee" },
   { id:8,  fecha:"2026-07-08", etiqueta:"Día -3",  fechaTexto:"8 jul",  type:"image", files:["dia3.jpg.PNG"],  pass:"02/05/2026" },
   { id:9,  fecha:"2026-07-09", etiqueta:"Día -2",  fechaTexto:"9 jul",  type:"image", files:["dia2.jpg.PNG"],  pass:"RealMadrid" },
